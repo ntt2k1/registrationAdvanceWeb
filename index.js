@@ -1,6 +1,7 @@
 import express  from 'express';
 import MongoDb from './utils/mongoConnect.js'
 import authRouter from "./routes/AuthRoutes.js"
+import cors from 'cors'
 import ENV from 'dotenv';
 const PORT = 4000;
 
@@ -11,7 +12,10 @@ ENV.config()
 MongoDb();
 
 const app = express();
+
 app.use(express.json());
+app.use(cors());
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
