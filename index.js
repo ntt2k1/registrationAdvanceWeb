@@ -1,5 +1,5 @@
 import express  from 'express';
-import mongoose from 'mongoose';
+import MongoDb from './utils/mongoConnect.js'
 import authRouter from "./routes/AuthRoutes.js"
 import ENV from 'dotenv';
 const PORT = 4000;
@@ -7,17 +7,8 @@ const PORT = 4000;
 // .env
 ENV.config()
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_CONNECTION);
-    console.log('Connect DB successfully');
-  } catch (error) {
-    console.log(error.message);
-    process.exit(1);
-  }
-};
-
-connectDB();
+//Connect DB
+MongoDb();
 
 const app = express();
 app.use(express.json());
