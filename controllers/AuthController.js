@@ -84,7 +84,7 @@ export const login = async (req, res) => {
     }
 
     const accessToken = jwt.sign(
-      { userName: newUser.nickname, userId: newUser._id },
+      { userName: user.nickname, userId: user._id },
       process.env.ACCESS_TOKEN_SECRET
     );
 
@@ -95,6 +95,6 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: 'Internal server error' });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
