@@ -7,7 +7,7 @@ import ENV from 'dotenv';
 ENV.config();
 
 export const register = async (req, res) => {
-  const { username, password, confirmPassword } = req.body;
+  const { username, nickname, password, confirmPassword } = req.body;
 
   // Simple Validation
   if (!username || !password) {
@@ -35,12 +35,12 @@ export const register = async (req, res) => {
 
     //All Success
     const hashedPassword = await argon2.hash(password);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, password: hashedPassword, nickname });
     await newUser.save();
 
     // Return token
     const accessToken = jwt.sign(
-      { userID: newUser._id },
+      { userName: newUser.nickname, userId: newUser._id },
       process.env.ACCESS_TOKEN_SECRET
     );
 

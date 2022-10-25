@@ -15,6 +15,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  nickname: {
+    type: String,
+    require: true
+  }
 });
 
 export default mongoose.model('users', UserSchema);
