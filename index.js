@@ -18,7 +18,7 @@ app.use(cors());
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('VERSION 1.5');
 });
 
 app.use('/api/auth', authRouter);
