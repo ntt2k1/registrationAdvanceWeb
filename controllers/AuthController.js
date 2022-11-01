@@ -98,3 +98,16 @@ export const login = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const allUser = async (req, res) => {
+  try {
+    const users = await User.find({})
+    return res.status(200).json({
+      success: true,
+      data: users
+    });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
